@@ -62,7 +62,6 @@ func SplitSecret(curve elliptic.Curve, threshold int, secret *big.Int, indices [
 		commitment.Coeffs[i] = ec.ScalarBaseMult(curve, coeff)
 	}
 
-	// 优化：直接初始化 shares 并批量赋值，无需创建零值再赋字段
 	shares := make(Shares, len(indices))
 	for i, index := range indices {
 		shares[i] = &Share{
